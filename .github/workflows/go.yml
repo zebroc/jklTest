@@ -20,7 +20,7 @@ jobs:
         if [ "$O" == "" ]; then echo "OK"; else echo "$O" && exit 255; fi
     - name: Patch
       run: git show --patch &> ${GITHUB_WORKSPACE}/patch
-    -name: PWD
+    - name: PWD
       run: pwd
     - name: Unit tests from ChatGPT
       uses: zebroc/chatgpt-create-unit-tests@main
