@@ -1,0 +1,28 @@
+name: jklTest
+
+on: [pull_request]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Go 1.20
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.20
+      id: go
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v1
+    - name: go fmt
+      run: |
+        O=$(gofmt -d -l .)
+        if [ "$O" == "" ]; then echo "OK"; else echo "$O" && exit 255; fi
+  gpt:
+    name: Unit tests from ChatGPT
+    runs-on: ubuntu-latest
+    - name: Unit tests from ChatGPT
+      uses: zebroc/chatgpt-create-unit-tests@v1
+      id: hello
+      with:
+        who-to-greet: 'World'
