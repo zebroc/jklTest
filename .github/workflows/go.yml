@@ -19,6 +19,8 @@ jobs:
         O=$(gofmt -d -l .)
         if [ "$O" == "" ]; then echo "OK"; else echo "$O" && exit 255; fi
     - name: Unit tests from ChatGPT
+      env:
+        OPENAI_TOKEN: ${{ secrets.OPENAI_TOKEN }}
       uses: zebroc/chatgpt-create-unit-tests@v1
       id: chatgpt-create-unit-tests
       with:
