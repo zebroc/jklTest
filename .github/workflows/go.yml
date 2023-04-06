@@ -18,11 +18,8 @@ jobs:
       run: |
         O=$(gofmt -d -l .)
         if [ "$O" == "" ]; then echo "OK"; else echo "$O" && exit 255; fi
-  chatgpt-create-unit-tests:
-    name: Unit tests from ChatGPT
-    runs-on: ubuntu-latest
     - name: Unit tests from ChatGPT
       uses: zebroc/chatgpt-create-unit-tests@v1
-      id: hello
+      id: chatgpt-create-unit-tests
       with:
         who-to-greet: 'World'
