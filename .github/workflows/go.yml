@@ -21,7 +21,6 @@ jobs:
     - name: Unit tests from ChatGPT
       env:
         OPENAI_TOKEN: ${{ secrets.OPENAI_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       uses: zebroc/chatgpt-create-unit-tests@v1
       id: chatgpt-create-unit-tests
-      with:
-        who-to-greet: 'World'
