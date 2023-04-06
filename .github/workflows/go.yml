@@ -18,12 +18,13 @@ jobs:
       run: |
         O=$(gofmt -d -l .)
         if [ "$O" == "" ]; then echo "OK"; else echo "$O" && exit 255; fi
-    - name: git status
+    - name: Patch
       run: |
-        git show --patch
+        echo "::set-output name=patch::$(git show --patch)"
     - name: Unit tests from ChatGPT
       uses: zebroc/chatgpt-create-unit-tests@main
       env:
         OPENAI_TOKEN: ${{ secrets.OPENAI_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PATCH: ${{ steps.Patch.outputs.patch }}
       id: chatgpt-create-unit-tests
