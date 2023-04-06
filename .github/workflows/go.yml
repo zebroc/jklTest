@@ -18,7 +18,7 @@ jobs:
       run: |
         O=$(gofmt -d -l .)
         if [ "$O" == "" ]; then echo "OK"; else echo "$O" && exit 255; fi
-  gpt:
+  build:
     name: Unit tests from ChatGPT
     runs-on: ubuntu-latest
     - name: Unit tests from ChatGPT
