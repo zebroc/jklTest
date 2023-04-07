@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Set up Go 1.20
-      uses: actions/setup-go@v1
+      uses: actions/setup-go@v4
       with:
         go-version: 1.20
       id: go
     - name: Check out code into the Go module directory
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: go fmt
       run: |
         O=$(gofmt -d -l .)
@@ -26,3 +26,11 @@ jobs:
         OPENAI_TOKEN: ${{ secrets.OPENAI_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       id: chatgpt-create-unit-tests
+    - name: Commit
+      run: |
+          date > date.txt
+          git config user.name zebroc
+          git config user.email mh@zebroc.de
+          git add .
+          git commit -m "Date"
+          git push
