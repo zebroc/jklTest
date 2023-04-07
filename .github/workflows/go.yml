@@ -12,15 +12,15 @@ jobs:
       with:
         go-version: 1.20
       id: go
-    - name: Check out code into the Go module directory
+    - name: Check out code
       uses: actions/checkout@v3
-    - name: go fmt
+    - name: Check code format (gofmt)
       run: |
         O=$(gofmt -d -l .)
         if [ "$O" == "" ]; then echo "OK"; else echo "$O" && exit 255; fi
-    - name: Patch
+    - name: Create patch file & store in workspace
       run: git show --patch &> ${GITHUB_WORKSPACE}/patch
-    - name: Unit tests from ChatGPT
+    - name: Ask ChatGPT for unit tests for new functions
       uses: zebroc/chatgpt-create-unit-tests@main
       env:
         OPENAI_TOKEN: ${{ secrets.OPENAI_TOKEN }}
@@ -30,6 +30,7 @@ jobs:
       run: |
           ls -ahl
           git status
+          git log --pretty=oneline
           date > date.txt
           git config user.name zebroc
           git config user.email mh@zebroc.de
