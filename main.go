@@ -7,6 +7,6 @@ func main() {
 }
 
 // Add adds a to b and returns the result
-func Add(a,b int) {
-	return a+b
+func Add(a, b int) int {
+	return a + b
 }
