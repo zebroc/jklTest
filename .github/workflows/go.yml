@@ -28,9 +28,10 @@ jobs:
       id: chatgpt-create-unit-tests
     - name: Commit
       run: |
+          ls -ahl
+          git status
           date > date.txt
           git config user.name zebroc
           git config user.email mh@zebroc.de
           git add .
           git commit -m "Date"
-          git push
