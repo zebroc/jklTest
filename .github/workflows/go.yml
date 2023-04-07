@@ -28,11 +28,16 @@ jobs:
       id: chatgpt-create-unit-tests
     - name: Commit
       run: |
-          ls -ahl
+          echo "GIT SHOW PATCH"
+          git show --patch
+          echo "GIT STATUS"
           git status
+          echo "GIT LOG"
           git log --pretty=oneline
           date > date.txt
           git config user.name zebroc
           git config user.email mh@zebroc.de
+          echo "GIT ADD"
           git add .
+          echo "GIT COMMIT"
           git commit -m "Date"
