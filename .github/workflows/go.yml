@@ -22,7 +22,7 @@ jobs:
     - name: Log
       run: git log --oneline
     - name: Create patch file & store in workspace
-      run: git diff ${GITHUB_BASE_REF} ${GITHUB_HEAD_REF} &> ${GITHUB_WORKSPACE}/patch
+      run: echo "git diff ${GITHUB_BASE_REF} ${GITHUB_HEAD_REF} &> ${GITHUB_WORKSPACE}/patch"
     - name: Ask ChatGPT for unit tests for new functions
       uses: zebroc/chatgpt-create-unit-tests@main
       env:
