@@ -13,3 +13,7 @@ func Sum(a, b int) int {
 func SayNum(a int) {
 	fmt.Printf("%d", a)
 }
+
+func Moo() {
+	fmt.Println("Cow!")
+}
