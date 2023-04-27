@@ -10,7 +10,7 @@ jobs:
     - name: Set up Go 1.20
       uses: actions/setup-go@v4
       with:
-        go-version: 1.20
+        go-version: '1.20'
     - name: Check out code
       uses: actions/checkout@v3
       with:
@@ -19,12 +19,13 @@ jobs:
       run: |
         O=$(gofmt -d -l .)
         if [ "$O" == "" ]; then echo "OK"; else echo "$O" && exit 255; fi
-    - name: Log
-      run: git log --oneline --decorate
     - name: Create patch file & store in workspace
       run: git diff origin/${GITHUB_BASE_REF} origin/${GITHUB_HEAD_REF} &> ${GITHUB_WORKSPACE}/patch
     - name: Ask ChatGPT for unit tests for new functions
       uses: zebroc/chatgpt-create-unit-tests@v2
+      with:
+        prompts: '{"review":"Do a code review for this:\n\n%s"}'
+        maxpatchsize: '500'
       env:
         OPENAI_TOKEN: ${{ secrets.OPENAI_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
