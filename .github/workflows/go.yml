@@ -25,7 +25,7 @@ jobs:
       uses: zebroc/chatgpt-create-unit-tests@v2
       with:
         prompts: '{"review":"Do a code review for this:\n\n%s"}'
-        maxpatchsize: '500'
+        maxpatchsize: '50'
       env:
         OPENAI_TOKEN: ${{ secrets.OPENAI_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
